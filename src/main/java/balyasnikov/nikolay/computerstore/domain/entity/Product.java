@@ -1,10 +1,9 @@
 package balyasnikov.nikolay.computerstore.domain.entity;
 
 import balyasnikov.nikolay.computerstore.domain.value.ProductType;
-import balyasnikov.nikolay.computerstore.infrastructure.dto.ProductDto;
-import jakarta.persistence.*;
 import lombok.NonNull;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -12,7 +11,7 @@ import java.math.BigDecimal;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     @Column(name = "series_number")
@@ -33,29 +32,7 @@ public abstract class Product {
         };
     }
 
-    public void fillFromDto(ProductDto dto){
-        setCost(dto.getCost());
-        setManufacturer(dto.getManufacturer());
-        setSeriesNumber(dto.getSeriesNumber());
-        setQuantity(dto.getQuantity());
-    }
-
-    public void updateFromDto(ProductDto dto){
-        if(dto.getCost() != null){
-            setCost(dto.getCost());
-        }
-        if(dto.getQuantity() != null){
-            setQuantity(dto.getQuantity());
-        }
-        if(dto.getManufacturer() != null){
-            setManufacturer(dto.getManufacturer());
-        }
-        if(dto.getSeriesNumber() != null){
-            setSeriesNumber(dto.getSeriesNumber());
-        }
-    }
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

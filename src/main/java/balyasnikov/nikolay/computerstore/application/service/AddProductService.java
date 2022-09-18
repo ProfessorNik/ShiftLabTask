@@ -1,5 +1,6 @@
 package balyasnikov.nikolay.computerstore.application.service;
 
+import balyasnikov.nikolay.computerstore.application.exception.InvalidDataException;
 import balyasnikov.nikolay.computerstore.application.getaway.ProductGetaway;
 import balyasnikov.nikolay.computerstore.domain.value.ProductType;
 import balyasnikov.nikolay.computerstore.domain.entity.*;
@@ -15,9 +16,14 @@ public class AddProductService {
     public ProductGetaway productGetaway;
 
     public Product addProduct(ProductDto productDto, ProductType productType){
-        var product = Product.createByType(productType);
-        ProductMapper.byType(productType)
-                .fillFromDto(product, productDto);
-        return productGetaway.save(product);
+        try {
+            var product = Product.createByType(productType);
+            ProductMapper.byType(productType)
+                    .fillFromDto(product, productDto);
+
+            return productGetaway.save(product);
+        } catch (NullPointerException e) {
+            throw new InvalidDataException("Not all data for product creation was transferred", e);
+        }
     }
 }

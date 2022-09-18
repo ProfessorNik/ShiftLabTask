@@ -1,9 +1,8 @@
-package balyasnikov.nikolay.computerstore.infrastructure.repository;
+package balyasnikov.nikolay.computerstore.infrastructure.db.dao;
 
 import balyasnikov.nikolay.computerstore.domain.entity.Monitor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface MonitorRepository extends JpaRepository<Monitor, Long> {
+public interface MonitorDao extends JpaRepository<Monitor, Long> {
 }

@@ -3,7 +3,7 @@ package balyasnikov.nikolay.computerstore.infrastructure.controller;
 import balyasnikov.nikolay.computerstore.application.service.AddProductService;
 import balyasnikov.nikolay.computerstore.application.service.GetProductService;
 import balyasnikov.nikolay.computerstore.application.service.UpdateProductService;
-import balyasnikov.nikolay.computerstore.domain.ProductType;
+import balyasnikov.nikolay.computerstore.domain.value.ProductType;
 import balyasnikov.nikolay.computerstore.infrastructure.dto.DesktopComputerDto;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +21,12 @@ public class DesktopComputerController {
 
     @GetMapping
     public ResponseEntity<List<?>> getDesktopComputers() {
-        return ResponseEntity.ok(getProductService.getDesktopComputers());
+        return ResponseEntity.ok(getProductService.getProducts(ProductType.DESKTOP_COMPUTER));
     }
 
     @PostMapping
     public ResponseEntity<?> postDesktopComputer(@RequestBody DesktopComputerDto dto) {
-        return ResponseEntity.ok(addProductService.addDesktopComputer(dto));
+        return ResponseEntity.ok(addProductService.addProduct(dto, ProductType.DESKTOP_COMPUTER));
     }
 
     @PutMapping

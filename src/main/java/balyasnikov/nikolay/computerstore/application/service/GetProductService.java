@@ -1,7 +1,8 @@
 package balyasnikov.nikolay.computerstore.application.service;
 
-import balyasnikov.nikolay.computerstore.domain.entity.*;
-import balyasnikov.nikolay.computerstore.infrastructure.repository.*;
+import balyasnikov.nikolay.computerstore.application.getaway.ProductGetaway;
+import balyasnikov.nikolay.computerstore.domain.value.ProductType;
+import balyasnikov.nikolay.computerstore.domain.entity.Product;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,30 +11,14 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class GetProductService {
-    public ProductRepository productRepository;
-    public DesktopComputerRepository desktopComputerRepository;
-    public HardDriveRepository hardDriveRepository;
-    public LaptopRepository laptopRepository;
-    public MonitorRepository monitorRepository;
+    public ProductGetaway productGetaway;
 
-    public List<DesktopComputer> getDesktopComputers(){
-        return desktopComputerRepository.findAll();
-    }
-
-    public List<HardDrive> getHardDrives(){
-        return hardDriveRepository.findAll();
-    }
-
-    public List<Laptop> getLaptops(){
-        return laptopRepository.findAll();
-    }
-
-    public List<Monitor> getMonitors(){
-        return monitorRepository.findAll();
+    public List<?> getProducts(ProductType productType){
+        return productGetaway.findProductsByType(productType);
     }
 
     public Product getProductBy(Long id){
-        return productRepository.findById(id).orElseThrow();
+        return productGetaway.findById(id).orElseThrow();
     }
 
 }

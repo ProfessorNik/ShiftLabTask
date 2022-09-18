@@ -1,5 +1,7 @@
 package balyasnikov.nikolay.computerstore.domain.entity;
 
+import balyasnikov.nikolay.computerstore.domain.value.ProductType;
+import balyasnikov.nikolay.computerstore.infrastructure.dto.ProductDto;
 import jakarta.persistence.*;
 import lombok.NonNull;
 
@@ -21,6 +23,37 @@ public abstract class Product {
     private BigDecimal cost;
     @Column(name="quantity")
     private Integer quantity;
+
+    public static Product createByType(ProductType productType){
+        return switch (productType) {
+            case LAPTOP -> new Laptop();
+            case MONITOR -> new Monitor();
+            case HDD -> new HardDrive();
+            case DESKTOP_COMPUTER -> new DesktopComputer();
+        };
+    }
+
+    public void fillFromDto(ProductDto dto){
+        setCost(dto.getCost());
+        setManufacturer(dto.getManufacturer());
+        setSeriesNumber(dto.getSeriesNumber());
+        setQuantity(dto.getQuantity());
+    }
+
+    public void updateFromDto(ProductDto dto){
+        if(dto.getCost() != null){
+            setCost(dto.getCost());
+        }
+        if(dto.getQuantity() != null){
+            setQuantity(dto.getQuantity());
+        }
+        if(dto.getManufacturer() != null){
+            setManufacturer(dto.getManufacturer());
+        }
+        if(dto.getSeriesNumber() != null){
+            setSeriesNumber(dto.getSeriesNumber());
+        }
+    }
 
     public long getId() {
         return id;

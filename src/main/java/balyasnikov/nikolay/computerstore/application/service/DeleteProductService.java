@@ -1,6 +1,6 @@
 package balyasnikov.nikolay.computerstore.application.service;
 
-import balyasnikov.nikolay.computerstore.infrastructure.repository.ProductRepository;
+import balyasnikov.nikolay.computerstore.application.getaway.ProductGetaway;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import org.springframework.stereotype.Service;
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class DeleteProductService {
-    private ProductRepository repository;
+    private ProductGetaway productGetaway;
 
     public void delete(@NonNull Long id){
-        repository.deleteById(id);
+        productGetaway.deleteById(id);
     }
 }

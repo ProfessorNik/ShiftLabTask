@@ -1,8 +1,8 @@
 package balyasnikov.nikolay.computerstore.infrastructure.db.repository;
 
 import balyasnikov.nikolay.computerstore.application.getaway.ProductGetaway;
-import balyasnikov.nikolay.computerstore.domain.value.ProductType;
 import balyasnikov.nikolay.computerstore.domain.entity.Product;
+import balyasnikov.nikolay.computerstore.domain.value.ProductType;
 import balyasnikov.nikolay.computerstore.infrastructure.db.dao.*;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
@@ -20,8 +20,8 @@ public class ProductRepository implements ProductGetaway {
     private MonitorDao monitorDao;
     private ProductDao productDao;
 
-    public List<?> findProductsByType(@NonNull ProductType productType){
-        return switch (productType){
+    public List<?> findProductsByType(@NonNull ProductType productType) {
+        return switch (productType) {
             case MONITOR -> monitorDao.findAll();
             case LAPTOP -> laptopDao.findAll();
             case HDD -> hardDriveDao.findAll();
@@ -29,15 +29,15 @@ public class ProductRepository implements ProductGetaway {
         };
     }
 
-    public Product save(@NonNull Product product){
+    public Product save(@NonNull Product product) {
         return productDao.save(product);
     }
 
-    public Optional<Product> findById(@NonNull Long id){
+    public Optional<Product> findById(@NonNull Long id) {
         return productDao.findById(id);
     }
 
-    public void deleteById(@NonNull Long id){
+    public void deleteById(@NonNull Long id) {
         productDao.deleteById(id);
     }
 

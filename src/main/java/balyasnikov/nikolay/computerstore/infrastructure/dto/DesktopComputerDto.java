@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DesktopComputerDto extends ProductDto{
+public class DesktopComputerDto extends ProductDto {
     private String formFactor;
 }

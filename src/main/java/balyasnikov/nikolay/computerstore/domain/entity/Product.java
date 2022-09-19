@@ -18,12 +18,12 @@ public abstract class Product {
     private String seriesNumber;
     @Column(name = "manufacturer")
     private String manufacturer;
-    @Column(name="cost")
+    @Column(name = "cost")
     private BigDecimal cost;
-    @Column(name="quantity")
+    @Column(name = "quantity")
     private Integer quantity;
 
-    public static Product createByType(ProductType productType){
+    public static Product createByType(ProductType productType) {
         return switch (productType) {
             case LAPTOP -> new Laptop();
             case MONITOR -> new Monitor();
@@ -61,6 +61,9 @@ public abstract class Product {
     }
 
     public void setCost(@NonNull BigDecimal cost) {
+        if (cost.compareTo(new BigDecimal(0)) < 0) {
+            throw new IllegalArgumentException("Cost must by more or equal then zero");
+        }
         this.cost = cost;
     }
 
@@ -69,6 +72,9 @@ public abstract class Product {
     }
 
     public void setQuantity(@NonNull Integer quantity) {
+        if (quantity.compareTo(0) < 0) {
+            throw new IllegalArgumentException("Quantity must by more or equal to zero");
+        }
         this.quantity = quantity;
     }
 }

@@ -1,6 +1,7 @@
 package balyasnikov.nikolay.computerstore.config;
 
-import io.swagger.annotations.Api;
+import balyasnikov.nikolay.computerstore.domain.entity.*;
+import com.fasterxml.classmate.TypeResolver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -13,22 +14,28 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-//http://localhost:8080/swagger-ui/index.html
 @Configuration
 @EnableWebMvc
 @EnableSwagger2
 public class SwaggerConfig {
     @Bean
     public Docket api() {
+        TypeResolver typeResolver = new TypeResolver();
         return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(getApiInfo())
+                .additionalModels(
+                        typeResolver.resolve(HardDrive.class),
+                        typeResolver.resolve(DesktopComputer.class),
+                        typeResolver.resolve(Laptop.class),
+                        typeResolver.resolve(Monitor.class),
+                        typeResolver.resolve(Product.class))
+                .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())
                 .build();
     }
 
-    private ApiInfo getApiInfo() {
+    private ApiInfo apiInfo() {
         Contact contact = new Contact(
                 "Nikolay Balyasnikov",
                 "https://github.com/ProfessorNik/ShiftLabTask",

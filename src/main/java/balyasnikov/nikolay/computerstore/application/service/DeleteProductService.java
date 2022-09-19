@@ -12,10 +12,10 @@ import org.springframework.stereotype.Service;
 public class DeleteProductService {
     private ProductGetaway productGetaway;
 
-    public void delete(@NonNull Long id){
+    public void delete(@NonNull Long id) {
         try {
             productGetaway.deleteById(id);
-        }catch (EmptyResultDataAccessException e){
+        } catch (EmptyResultDataAccessException e) {
             throw new ProductNotFoundException("product with this id was not found, it cannot be deleted", e);
         }
     }

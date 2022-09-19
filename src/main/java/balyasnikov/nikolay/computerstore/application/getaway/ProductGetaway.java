@@ -1,7 +1,7 @@
 package balyasnikov.nikolay.computerstore.application.getaway;
 
-import balyasnikov.nikolay.computerstore.domain.value.ProductType;
 import balyasnikov.nikolay.computerstore.domain.entity.Product;
+import balyasnikov.nikolay.computerstore.domain.value.ProductType;
 import lombok.NonNull;
 
 import java.util.List;

@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MonitorDto extends ProductDto{
+public class MonitorDto extends ProductDto {
     private Double diagonal;
 }

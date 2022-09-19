@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "HDD")
-public class HardDrive extends Product{
+public class HardDrive extends Product {
     private Integer capacity;
 
     public Integer getCapacity() {
@@ -15,6 +15,9 @@ public class HardDrive extends Product{
     }
 
     public void setCapacity(@NonNull Integer capacity) {
+        if (capacity.compareTo(0) <= 0) {
+            throw new IllegalArgumentException("Capacity should be greater then zero");
+        }
         this.capacity = capacity;
     }
 }

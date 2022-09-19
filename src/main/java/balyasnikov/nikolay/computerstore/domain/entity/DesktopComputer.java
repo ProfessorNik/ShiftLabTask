@@ -8,10 +8,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "DESKTOP_COMPUTER")
-public class DesktopComputer extends Product{
+public class DesktopComputer extends Product {
     @Column(name = "form_factor")
     private String formFactor;
-
 
     public String getFormFactor() {
         return formFactor;

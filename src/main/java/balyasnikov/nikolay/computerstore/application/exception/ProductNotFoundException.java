@@ -1,6 +1,6 @@
 package balyasnikov.nikolay.computerstore.application.exception;
 
-public class ProductNotFoundException extends RuntimeException{
+public class ProductNotFoundException extends RuntimeException {
     public ProductNotFoundException() {
     }
 

@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("product")
+@Log4j2
 public class ProductController {
     private GetProductService getProductService;
     private DeleteProductService deleteProductService;
@@ -29,9 +32,10 @@ public class ProductController {
                                     schema = @Schema(implementation = Product.class))),
                     @ApiResponse(responseCode = "404", description = "Product not found")
             })
-    @GetMapping("product")
+    @GetMapping
     public ResponseEntity<?> getProduct(@RequestParam(name = "id") Long id) {
-        return ResponseEntity.ok(getProductService.getProductBy(id));
+        var response = getProductService.getProductBy(id);
+        return ResponseEntity.ok(response);
     }
 
     @Operation(summary = "Delete product by id",
@@ -41,14 +45,16 @@ public class ProductController {
                             description = "The product has been removed"),
                     @ApiResponse(responseCode = "404", description = "Product not found"),
             })
-    @DeleteMapping("product")
+    @DeleteMapping
     public ResponseEntity<?> deleteProduct(@RequestParam(name = "id") Long id) {
         deleteProductService.delete(id);
+        log.info("Product with id: " + id + "has been deleted");
         return ResponseEntity.ok(HttpEntity.EMPTY);
     }
 
     @ExceptionHandler({ProductNotFoundException.class})
     public ResponseEntity<?> notFoundException(ProductNotFoundException e) {
+        log.error("Product not found: " + e.getMessage());
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

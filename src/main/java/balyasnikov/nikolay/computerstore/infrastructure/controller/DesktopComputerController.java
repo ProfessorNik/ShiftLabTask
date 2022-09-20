@@ -51,7 +51,7 @@ public class DesktopComputerController {
     @PostMapping
     public ResponseEntity<?> postDesktopComputer(@RequestBody DesktopComputerDto dto) {
         var product = addProductService.addProduct(dto, ProductType.DESKTOP_COMPUTER);
-        log.info("The product with id" + product.getId() + "has been created");
+        log.info("The product with id " + product.getId() + " has been created");
         return ResponseEntity.ok(product);
     }
 
@@ -69,7 +69,7 @@ public class DesktopComputerController {
     @PutMapping
     public ResponseEntity<?> updateDesktopComputer(@RequestParam(name = "id") Long id, @RequestBody DesktopComputerDto dto) {
         var product = updateProductService.updateProduct(id, dto, ProductType.DESKTOP_COMPUTER);
-        log.info("Product with id: " + id + "has been updated");
+        log.info("Product with id: " + id + " has been updated");
         return ResponseEntity.ok(product);
     }
 

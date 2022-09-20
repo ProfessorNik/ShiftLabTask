@@ -52,7 +52,7 @@ public class LaptopController {
     @PostMapping
     public ResponseEntity<?> postLaptop(@RequestBody LaptopDto dto) {
         var product = addProductService.addProduct(dto, ProductType.LAPTOP);
-        log.info("The product with id" + product.getId() + "has been created");
+        log.info("The product with id " + product.getId() + " has been created");
         return ResponseEntity.ok(product);
     }
 
@@ -70,7 +70,7 @@ public class LaptopController {
     @PutMapping
     public ResponseEntity<?> updateLaptop(@RequestParam(name = "id") Long id, @RequestBody LaptopDto dto) {
         var product = updateProductService.updateProduct(id, dto, ProductType.LAPTOP);
-        log.info("Product with id: " + id + "has been updated");
+        log.info("Product with id: " + id + " has been updated");
         return ResponseEntity.ok(product);
     }
 

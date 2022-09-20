@@ -40,10 +40,10 @@ public class MonitorController {
                     @ApiResponse(responseCode = "404", description = "Product not found"),
                     @ApiResponse(responseCode = "422", description = "Incorrect data")
             })
-    @PutMapping("monitor")
+    @PutMapping
     public ResponseEntity<?> updateMonitor(@RequestParam(name = "id") Long id, @RequestBody MonitorDto dto) {
         var product = updateProductService.updateProduct(id, dto, ProductType.MONITOR);
-        log.info("Product with id: " + id + "has been updated");
+        log.info("Product with id: " + id + " has been updated");
         return ResponseEntity.ok(product);
     }
 
@@ -52,7 +52,7 @@ public class MonitorController {
                     @ApiResponse(responseCode = "200", description = "List of monitors"),
                     @ApiResponse(responseCode = "404", description = "Product not found")
             })
-    @GetMapping("monitor")
+    @GetMapping
     public ResponseEntity<List<?>> getMonitors() {
         return ResponseEntity.ok(getProductService.getProducts(ProductType.MONITOR));
     }
@@ -67,10 +67,10 @@ public class MonitorController {
                                     schema = @Schema(implementation = Monitor.class))),
                     @ApiResponse(responseCode = "422", description = "Incorrect data")
             })
-    @PostMapping("monitor")
+    @PostMapping
     public ResponseEntity<?> postMonitor(@RequestBody MonitorDto dto) {
         var product = addProductService.addProduct(dto, ProductType.MONITOR);
-        log.info("The product with id" + product.getId() + "has been created");
+        log.info("The product with id " + product.getId() + " has been created");
         return ResponseEntity.ok(product);
     }
 

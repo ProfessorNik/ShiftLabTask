@@ -69,7 +69,7 @@ public class HardDriveController {
     @PutMapping
     public ResponseEntity<?> updateHardDrive(@RequestParam(name = "id") Long id, @RequestBody HardDriveDto dto) {
         var product = updateProductService.updateProduct(id, dto, ProductType.HDD);
-        log.info("Product with id: " + id + "has been updated");
+        log.info("Product with id: " + id + " has been updated");
         return ResponseEntity.ok(product);
     }
 

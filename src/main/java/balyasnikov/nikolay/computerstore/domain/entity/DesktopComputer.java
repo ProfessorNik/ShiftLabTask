@@ -20,7 +20,7 @@ public class DesktopComputer extends Product {
     }
 
     public void setFormFactor(@NonNull String formFactor) {
-        if(availableFormFactors.contains(formFactor.toLowerCase())){
+        if(!availableFormFactors.contains(formFactor.toLowerCase())){
             throw new IllegalArgumentException("Form factor of the computer can be one of: " + availableFormFactors);
         }
         this.formFactor = formFactor.toLowerCase();

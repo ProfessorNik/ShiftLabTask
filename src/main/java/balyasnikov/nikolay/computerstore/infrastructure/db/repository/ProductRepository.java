@@ -41,4 +41,7 @@ public class ProductRepository implements ProductGetaway {
         productDao.deleteById(id);
     }
 
+    public void deleteAll(){
+        productDao.deleteAll();
+    }
 }

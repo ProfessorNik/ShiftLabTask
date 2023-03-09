@@ -1,5 +1,6 @@
 # Computer shop
-Task for shift lab
+
+Information system for an electronics store on Spring boot
 
 # Tools
 
